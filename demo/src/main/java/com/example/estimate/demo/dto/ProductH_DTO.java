@@ -7,8 +7,7 @@ import jakarta.persistence.*;
 public class ProductH_DTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "prod_id", columnDefinition = "char(9)")
+    @Column(name = "prod_id")
     private String prodID;
 
     @Column(name = "prod_name", columnDefinition = "varchar(20)")
@@ -17,8 +16,8 @@ public class ProductH_DTO {
     public ProductH_DTO() {
     }
 
-    public ProductH_DTO(String prodID, String prodName) {
-        this.prodID = prodID;
+    public ProductH_DTO(String prodId, String prodName) {
+        this.prodID = prodId;
         this.prodName = prodName;
     }
 

@@ -29,7 +29,6 @@ public class MainController {
     @GetMapping("/loginAction")
     public String loginAction(HttpServletRequest request, @RequestParam(required = true, name = "inputID") String userID,
                                                                                     @RequestParam(required = true, name = "inputPW") String userPW){
-        logger.info("userID: "+userID+"のログイン試み。");
         userID = getUserID(userID);
         userPW = getUserPW(userPW);
         HttpSession session = request.getSession();
@@ -38,7 +37,7 @@ public class MainController {
 
         if(isLoginCorrect == 1){
             session.setAttribute("userID", userID);
-            logger.info("userID: "+userID+"がログインしました。");
+            logger.info("userID: " + userID + "がログインしました。");
         }else if (isLoginCorrect == 0){
             session.setAttribute("message", "ID/PWが一緒しません。");
             return "redirect:login";

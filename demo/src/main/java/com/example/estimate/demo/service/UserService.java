@@ -30,6 +30,10 @@ public class UserService {
         return -1;
     }
 
+    public String getUserName(String userID){
+        return userRepository.getUserName(userID);
+    }
+
     public UserDTO getUserInfo(String userID){
         Optional<UserDTO> userDTOOptional = userRepository.findById(userID);
 

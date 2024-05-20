@@ -17,6 +17,10 @@ const input = document.getElementById('inputID');
         return;
       }
 
+      if(preIdLength == 3 && idLength == 3){
+              return;
+      }
+
       //ID入力値が３以上に増加される時'-'を追加
       if(idLength > 2 && idLength <= 3){
         changedValue = value[0] + value[1] + "-";

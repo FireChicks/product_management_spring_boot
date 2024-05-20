@@ -5,15 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 @Entity
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
     private String prodID;
-
     private String prodName;
     private int prodPrice;
     private Date fromDate;
@@ -23,12 +23,22 @@ public class Product {
     public Product() {
     }
 
-    public Product(String prodName, int prodPrice, Date fromDate, Date toDate, int prodStock) {
-        this.prodName = prodName;
-        this.prodPrice = prodPrice;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.prodStock = prodStock;
+    public Product(ProductD_DTO productD, ProductH_DTO productH) {
+        this.ID = productD.getId();
+        this.prodID = productD.getProdID();
+        this.prodName = productH.getProdName();
+        this.prodPrice = productD.getProdPrice();
+        this.fromDate = productD.getFromDate();
+        this.toDate = productD.getToDate();
+        this.prodStock = productD.getProdStock();
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
     public String getProdID() {
@@ -47,8 +57,16 @@ public class Product {
         this.prodName = prodName;
     }
 
-    public int getProdPrice() {
-        return prodPrice;
+    public String getProdPrice() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedAmount = decimalFormat.format(this.prodPrice);
+
+        // 일본 통화 기호(￥)를 붙여서 반환
+        return "￥" + formattedAmount;
+    }
+
+    public int getPrice() {
+       return this.prodPrice;
     }
 
     public void setProdPrice(int prodPrice) {
